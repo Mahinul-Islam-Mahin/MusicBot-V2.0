@@ -8,7 +8,7 @@ const {
 const express = require('express');
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
-app.listen(3000);
+app.listen(6000);
 const { Riffy } = require('riffy');
 const { Spotify } = require('riffy-spotify');
 const config = require('./config.js');
