@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <nav class="flex justify-between items-center mb-12">
+      <h1 class="text-3xl font-bold">Flynn™️ Discord Music Bot</h1>
+      <div class="flex items-center gap-4">
+        <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" alt="Avatar"
+          class="w-10 h-10 rounded-full">
+        <span class="font-medium">
+          <%= user.username %>
+        </span>
+        <a href="/logout" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md transition-colors">Logout</a>
+      </div>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <!-- Server Selection Sidebar -->
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-semibold mb-4">Your Servers</h2>
+        <div class="space-y-2">
+          <% user.guilds.forEach(guild=> { %>
+            <% if (guild.permissions & 0x20) { %>
+              <a href="/dashboard/server/<%= guild.id %>"
+                class="flex items-center gap-3 p-3 rounded-md hover:bg-gray-700 transition-colors">
+                <% if (guild.icon) { %>
+                  <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png"
+                    alt="<%= guild.name %>" class="w-8 h-8 rounded-full">
+                  <% } else { %>
+                    <div class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
+                      <%= guild.name.charAt(0) %>
+                    </div>
+                    <% } %>
+                      <span>
+                        <%= guild.name %>
+                      </span>
+              </a>
+              <% } %>
+                <% }); %>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="lg:col-span-3 space-y-6">
+        <!-- Bot Status Section -->
+        <div class="bg-gray-800 p-6 rounded-lg">
+          <h2 class="text-xl font-semibold mb-4">Bot Status</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 bg-gray-700 rounded-md">
+              <h3 class="font-medium text-gray-300">Current Status</h3>
+              <p class="text-2xl font-bold mt-2">Online</p>
+            </div>
+            <div class="p-4 bg-gray-700 rounded-md">
+              <h3 class="font-medium text-gray-300">Total Servers</h3>
+              <p class="text-2xl font-bold mt-2">
+                9<%= user.guilds.length %>
+              </p>
+            </div>
+            <div class="p-4 bg-gray-700 rounded-md">
+              <h3 class="font-medium text-gray-300">Premium Status</h3>
+              <p class="text-2xl font-bold mt-2">Active</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-gray-800 p-6 rounded-lg">
+          <h2 class="text-xl font-semibold mb-4">Quick Actions</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <button class="p-4 bg-indigo-600 hover:bg-indigo-700 rounded-md transition-colors">
+              Change Bot Status
+            </button>
+            <button class="p-4 bg-indigo-600 hover:bg-indigo-700 rounded-md transition-colors">
+              Update Prefix
+            </button>
+            <button class="p-4 bg-indigo-600 hover:bg-indigo-700 rounded-md transition-colors">
+              View Analytics
+            </button>
+            <button class="p-4 bg-indigo-600 hover:bg-indigo-700 rounded-md transition-colors">
+              Manage Premium
+            </button>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-gray-800 p-6 rounded-lg">
+          <h2 class="text-xl font-semibold mb-4">Recent Activity</h2>
+          <div class="space-y-4">
+            <div class="p-4 bg-gray-700 rounded-md">
+              <p class="text-sm text-gray-300">Bot status updated</p>
+              <p class="mt-1">Status changed to "Playing Music"</p>
+            </div>
+            <div class="p-4 bg-gray-700 rounded-md">
+              <p class="text-sm text-gray-300">Prefix updated</p>
+              <p class="mt-1">New prefix set to "!"</p>
+            </div>
+            <div class="p-4 bg-gray-700 rounded-md">
+              <p class="text-sm text-gray-300">Premium feature activated</p>
+              <p class="mt-1">Enhanced audio quality enabled</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Add your JavaScript for handling button clicks and interactions here
+  </script>
+</body>
+
+</html>

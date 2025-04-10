@@ -1,0 +1,77 @@
+[
+  {
+    "name": "play",
+    "description": "Play a song from YouTube, Spotify, or other supported sources",
+    "type": 1
+  },
+  {
+    "name": "help",
+    "description": "Shows all bot commands and features",
+    "type": 1
+  },
+  {
+    "name": "lyrics",
+    "description": "Display lyrics for the currently playing song",
+    "type": 1
+  },
+  {
+    "name": "save",
+    "description": "Save the current song to your playlist",
+    "type": 1
+  },
+  {
+    "name": "load",
+    "description": "Load a saved playlist",
+    "type": 1
+  },
+  {
+    "name": "effects",
+    "description": "Apply audio effects to the current playback",
+    "type": 1
+  },
+  {
+    "name": "audioeffects",
+    "description": "Manage advanced audio effects settings",
+    "type": 1
+  },
+  {
+    "name": "boost",
+    "description": "Enhance the audio quality",
+    "type": 1
+  },
+  {
+    "name": "playlist",
+    "description": "Manage your saved playlists",
+    "type": 1
+  },
+  {
+    "name": "premiumqueue",
+    "description": "Access premium queue features (Premium Only)",
+    "type": 1
+  },
+  {
+    "name": "utility",
+    "description": "Access utility features",
+    "type": 1
+  },
+  {
+    "name": "serverlist",
+    "description": "View list of servers the bot is in",
+    "type": 1
+  },
+  {
+    "name": "setstatus",
+    "description": "Set bot status",
+    "type": 1
+  },
+  {
+    "name": "premiumcheck",
+    "description": "Check premium status",
+    "type": 1
+  },
+  {
+    "name": "purchase",
+    "description": "Get information about premium features",
+    "type": 1
+  }
+]

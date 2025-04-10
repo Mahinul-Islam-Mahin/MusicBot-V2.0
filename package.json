@@ -1,0 +1,35 @@
+{
+  "name": "discord-music-bot",
+  "version": "1.0.0",
+  "description": "A Discord music bot using Riffy and Lavalink",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "dashboard": "node dashboard/server.js"
+  },
+  "author": {
+    "name": "Flynn"
+  },
+  "keywords": [
+    "discord",
+    "music",
+    "bot",
+    "riffy",
+    "lavalink"
+  ],
+  "dependencies": {
+    "axios": "^1.8.4",
+    "body-parser": "^2.2.0",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.9",
+    "express": "^4.21.2",
+    "express-session": "^1.17.3",
+    "passport": "^0.6.0",
+    "passport-discord": "^0.1.4",
+    "riffy": "^1.0.0",
+    "riffy-spotify": "^1.0.0",
+    "stripe": "^17.7.0"
+  }
+}

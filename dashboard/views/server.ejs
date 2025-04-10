@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-900 text-white">
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex items-center justify-between mb-8">
+      <h1 class="text-3xl font-bold">
+        <%= server.name %>
+      </h1>
+      <a href="/dashboard" class="text-blue-500 hover:text-blue-400">← Back to Dashboard</a>
+    </div>
+
+    <div class="bg-gray-800 rounded-lg p-6 mb-8">
+      <h2 class="text-xl font-semibold mb-4">Quick Actions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <button onclick="changeStatus()"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition duration-200">
+          Change Bot Status
+        </button>
+        <button onclick="updatePrefix()"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition duration-200">
+          Update Prefix
+        </button>
+        <button onclick="viewAnalytics()"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition duration-200">
+          View Analytics
+        </button>
+        <button onclick="managePremium()"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition duration-200">
+          Manage Premium
+        </button>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Server Settings</h2>
+      <div id="settings" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <script>
+    const serverId = '<%= server.id %>';
+
+    async function fetchSettings() {
+      try {
+        const response = await fetch(`/api/settings/${serverId}`);
+        const data = await response.json();
+        displaySettings(data);
+      } catch (error) {
+        console.error('Error fetching settings:', error);
+      }
+    }
+
+    function displaySettings(settings) {
+      const settingsDiv = document.getElementById('settings');
+      settingsDiv.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span>Current Prefix:</span>
+          <span class="font-semibold">${settings.prefix}</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span>Premium Status:</span>
+          <span class="font-semibold">${settings.premium ? 'Active' : 'Inactive'}</span>
+        </div>
+      `;
+    }
+
+    async function managePremium() {
+      try {
+        const response = await fetch('/api/premium/toggle', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        const data = await response.json();
+        alert(data.message);
+        fetchSettings();
+      } catch (error) {
+        console.error('Error managing premium:', error);
+        alert('Failed to manage premium status');
+      }
+    }
+
+    async function changeStatus() {
+      const status = prompt('Enter new status:');
+      if (!status) return;
+
+      try {
+        const response = await fetch('/api/status', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status })
+        });
+        const data = await response.json();
+        alert(data.message);
+      } catch (error) {
+        console.error('Error updating status:', error);
+        alert('Failed to update status');
+      }
+    }
+
+    async function updatePrefix() {
+      const prefix = prompt('Enter new prefix:');
+      if (!prefix) return;
+
+      try {
+        const response = await fetch(`/api/prefix/${serverId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prefix })
+        });
+        const data = await response.json();
+        alert(data.message);
+        fetchSettings();
+      } catch (error) {
+        console.error('Error updating prefix:', error);
+        alert('Failed to update prefix');
+      }
+    }
+
+    function viewAnalytics() {
+      alert('Analytics feature coming soon!');
+    }
+
+    function managePremium() {
+      alert('Premium management feature coming soon!');
+    }
+
+    // Fetch settings when page loads
+    fetchSettings();
+  </script>
+</body>
+
+</html>
