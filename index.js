@@ -7,8 +7,8 @@ const {
 } = require('discord.js');
 const express = require('express');
 const app = express();
-app.get('/', (req, res) => res.send('Bot is alive!'));
-app.listen("https://musicbot-v2-0.onrender.com");
+app.get('https://musicbot-v2-0.onrender.com', (req, res) => res.send('Bot is alive!'));
+app.listen(7000);
 const { Riffy } = require('riffy');
 const { Spotify } = require('riffy-spotify');
 const config = require('./config.js');
