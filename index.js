@@ -5,6 +5,10 @@ const {
   Collection, // Add this line
   EmbedBuilder, // Add this line for embeds
 } = require('discord.js');
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => res.send('Bot is alive!'));
+app.listen(3000);
 const { Riffy } = require('riffy');
 const { Spotify } = require('riffy-spotify');
 const config = require('./config.js');
