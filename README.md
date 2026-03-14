@@ -99,7 +99,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Credits
 
 - [Discord.js](https://discord.js.org/)
-- [Riffy](https://github.com/riffy-team/riffy)
 - [Lavalink](https://github.com/freyacodes/Lavalink)
 - [Spotify API](https://developer.spotify.com/)
 
